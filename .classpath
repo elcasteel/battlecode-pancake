@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/battlecode-server.jar"/>
 	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/gluegen-rt.jar"/>
 	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/jogl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max/Desktop/Battlecode 2011/lib/battlecode-server.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

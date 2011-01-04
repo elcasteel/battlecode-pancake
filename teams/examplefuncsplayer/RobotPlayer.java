@@ -23,10 +23,11 @@ public class RobotPlayer implements Runnable {
     Boolean tried = false;
 	public void run() {
 		ComponentController [] components = myRC.newComponents();
-		System.out.println(java.util.Arrays.toString(components));
-		System.out.flush();
+		//System.out.println(java.util.Arrays.toString(components));
+		//System.out.flush();
 		if(myRC.getChassis()==Chassis.BUILDING){
-			System.out.println(components[1].componentClass()+ " length "+components.length);
+			//System.out.println(components[1].componentClass()+ " length "+components.length);
+			myRC.setIndicatorString(0,components[1].componentClass()+ " length "+components.length);
 			runBuilder((MovementController)components[0],(BuilderController)components[2]);
 		}
 		else
