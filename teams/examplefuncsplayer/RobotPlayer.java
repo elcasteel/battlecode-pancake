@@ -49,10 +49,11 @@ public class RobotPlayer implements Runnable {
 				else if(myRC.getTeamResources()>=2*Chassis.LIGHT.cost)
 					for(int i=1; i<testBuilding.length; i++){
 						try{
-							builder.build(Chassis.LIGHT,myRC.getLocation().add(myRC.getDirection()));
-							System.out.println("Count is: " + i);
+							builder.build(testBuilding[i],myRC.getLocation().add(myRC.getDirection()),RobotLevel.ON_GROUND);
+							System.out.println(testBuilding[i].name());
+							myRC.yield();
 						}catch(Exception e){
-							
+							myRC.yield();
 						}
 					}
 				//builder.build(Chassis.LIGHT,myRC.getLocation().add(myRC.getDirection()));
