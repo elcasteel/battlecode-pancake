@@ -2,15 +2,15 @@
 <classpath>
 	<classpathentry kind="src" output="bin" path="teams"/>
 	<classpathentry kind="var" path="JRE_LIB" rootpath="JRE_SRCROOT" sourcepath="JRE_SRC"/>
-	<classpathentry kind="con" path="/home/kcasteel/workspace/BattleCode 2011/bin"/>
-	<classpathentry kind="con" path="/home/kcasteel/workspace/BattleCode 2011/bin/examplefuncsplayer"/>
-	<classpathentry kind="con" path="/home/kcasteel/workspace/BattleCode 2011/lib"/>
-	<classpathentry kind="con" path="/home/kcasteel/workspace/BattleCode 2011/teams"/>
-	<classpathentry kind="con" path="/home/kcasteel/workspace/BattleCode 2011/teams/examplefuncsplayer"/>
-	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/battlecode-client.jar"/>
-	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/battlecode-player.jar"/>
-	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/battlecode-server.jar"/>
-	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/gluegen-rt.jar"/>
-	<classpathentry kind="lib" path="/home/kcasteel/workspace/BattleCode 2011/lib/jogl.jar"/>
+	<classpathentry kind="con" path="C:/Users/Max/workspace/battlecode-pancake/bin"/>
+	<classpathentry kind="con" path="C:/Users/Max/workspace/battlecode-pancake/bin/examplefuncsplayer"/>
+	<classpathentry kind="con" path="C:/Users/Max/workspace/battlecode-pancake/lib"/>
+	<classpathentry kind="con" path="C:/Users/Max/workspace/battlecode-pancake/teams"/>
+	<classpathentry kind="con" path="C:/Users/Max/workspace/battlecode-pancake/teams/examplefuncsplayer"/>
+	<classpathentry kind="lib" path="C:/Users/Max/workspace/battlecode-pancake/lib/battlecode-client.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max/workspace/battlecode-pancake/lib/battlecode-player.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max/workspace/battlecode-pancake/lib/battlecode-server.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max/workspace/battlecode-pancake/lib/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Max/workspace/battlecode-pancake/lib/jogl.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

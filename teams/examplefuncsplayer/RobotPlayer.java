@@ -1,5 +1,6 @@
 package examplefuncsplayer;
 //adding a comment to test git
+//new comment!
 import battlecode.common.*;
 import static battlecode.common.GameConstants.*;
 
