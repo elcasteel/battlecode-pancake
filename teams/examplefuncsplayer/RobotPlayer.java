@@ -10,13 +10,23 @@ public class RobotPlayer implements Runnable {
     public RobotPlayer(RobotController rc) {
         myRC = rc;
     }
-
+    ComponentType[] testBuilding ={ComponentType.ANTENNA,ComponentType.ARMORY,ComponentType.BEAM,
+    		                       ComponentType.BLASTER,ComponentType.BUG,ComponentType.BUILDING_MOTOR,
+    		                       ComponentType.BUILDING_SENSOR,ComponentType.CONSTRUCTOR,ComponentType.DISH,
+    		                       ComponentType.DROPSHIP,ComponentType.DUMMY,ComponentType.FACTORY,
+    		                       ComponentType.FLYING_MOTOR,ComponentType.HAMMER,ComponentType.HARDENED,
+    		                       ComponentType.IRON,ComponentType.JUMP,ComponentType.LARGE_MOTOR,ComponentType.MEDIC,
+    		                       ComponentType.MEDIUM_MOTOR,ComponentType.NETWORK,ComponentType.PLASMA,ComponentType.PLATING,
+    		                       ComponentType.PROCESSOR,ComponentType.RADAR,ComponentType.SATELLITE,ComponentType.SHIELD,
+    		                       ComponentType.SIGHT,ComponentType.SMALL_MOTOR,ComponentType.TELESCOPE};
 	public void run() {
 		ComponentController [] components = myRC.newComponents();
 		System.out.println(java.util.Arrays.toString(components));
 		System.out.flush();
-		if(myRC.getChassis()==Chassis.BUILDING)
+		if(myRC.getChassis()==Chassis.BUILDING){
+			System.out.println(components[1].componentClass()+ " length "+components.length);
 			runBuilder((MovementController)components[0],(BuilderController)components[2]);
+		}
 		else
 			runMotor((MovementController)components[0]);
 	}
@@ -52,7 +62,7 @@ public class RobotPlayer implements Runnable {
                 while (motor.isActive()) {
                     myRC.yield();
                 }
-
+                
                 if (motor.canMove(myRC.getDirection())) {
                     //System.out.println("about to move");
                     motor.moveForward();
