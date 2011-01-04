@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>battlecode-pancake</name>
+	<name>BattleCode 2011</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -18,27 +18,27 @@
 		<link>
 			<name>bin</name>
 			<type>2</type>
-			<location>C:/Users/Max/workspace/battlecode-pancake/bin</location>
+			<location>/home/kcasteel/workspace/BattleCode 2011/bin</location>
 		</link>
 		<link>
 			<name>build.xml</name>
 			<type>1</type>
-			<location>C:/Users/Max/workspace/battlecode-pancake/build.xml</location>
+			<location>/home/kcasteel/workspace/BattleCode 2011/build.xml</location>
 		</link>
 		<link>
 			<name>examplefuncsplayer</name>
 			<type>2</type>
-			<location>C:/Users/Max/workspace/battlecode-pancake/bin/examplefuncsplayer</location>
+			<location>/home/kcasteel/workspace/BattleCode 2011/bin/examplefuncsplayer</location>
 		</link>
 		<link>
 			<name>lib</name>
 			<type>2</type>
-			<location>C:/Users/Max/workspace/battlecode-pancake/lib</location>
+			<location>/home/kcasteel/workspace/BattleCode 2011/lib</location>
 		</link>
 		<link>
 			<name>teams</name>
 			<type>2</type>
-			<location>C:/Users/Max/workspace/battlecode-pancake/teams</location>
+			<location>/home/kcasteel/workspace/BattleCode 2011/teams</location>
 		</link>
 	</linkedResources>
 </projectDescription>

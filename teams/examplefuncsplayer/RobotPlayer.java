@@ -52,7 +52,11 @@ public class RobotPlayer implements Runnable {
 							builder.build(testBuilding[i],myRC.getLocation().add(myRC.getDirection()),RobotLevel.ON_GROUND);
 							System.out.println(testBuilding[i].name());
 							myRC.yield();
-						}catch(Exception e){
+						}catch(IllegalArgumentException e){
+							System.out.println("catching an error");
+							myRC.yield();
+						}catch(GameActionException e){
+							System.out.println(testBuilding[i].name());
 							myRC.yield();
 						}
 					}
