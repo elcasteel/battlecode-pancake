@@ -20,6 +20,7 @@ public class RobotPlayer implements Runnable {
     		                       ComponentType.MEDIUM_MOTOR,ComponentType.NETWORK,ComponentType.PLASMA,ComponentType.PLATING,
     		                       ComponentType.PROCESSOR,ComponentType.RADAR,ComponentType.SATELLITE,ComponentType.SHIELD,
     		                       ComponentType.SIGHT,ComponentType.SMALL_MOTOR,ComponentType.TELESCOPE};
+    Boolean tried = false;
 	public void run() {
 		ComponentController [] components = myRC.newComponents();
 		System.out.println(java.util.Arrays.toString(components));
@@ -46,8 +47,15 @@ public class RobotPlayer implements Runnable {
 				if(!motor.canMove(myRC.getDirection()))
 					motor.setDirection(myRC.getDirection().rotateRight());
 				else if(myRC.getTeamResources()>=2*Chassis.LIGHT.cost)
-					builder.build(Chassis.LIGHT,myRC.getLocation().add(myRC.getDirection()));
-
+					for(int i=1; i<testBuilding.length; i++){
+						try{
+							builder.build(Chassis.LIGHT,myRC.getLocation().add(myRC.getDirection()));
+							System.out.println("Count is: " + i);
+						}catch(Exception e){
+							
+						}
+					}
+				//builder.build(Chassis.LIGHT,myRC.getLocation().add(myRC.getDirection()));
             } catch (Exception e) {
                 System.out.println("caught exception:");
                 e.printStackTrace();
