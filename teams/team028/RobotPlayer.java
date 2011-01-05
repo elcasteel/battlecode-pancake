@@ -56,7 +56,10 @@ public class RobotPlayer implements Runnable{
 		while(true){
 			try{
 			me.doStuff();
-			}catch(Exception e){}
+			}catch(Exception e){
+				System.out.println("caught an exception in robot player-should be checking this somewhere else");
+				e.printStackTrace();
+			}
 		}
 	}
 
