@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+<name>BattleCode 2011</name>
+<comment></comment>
+<projects>
+</projects>
+<buildSpec>
+<buildCommand>
+<name>org.eclipse.jdt.core.javabuilder</name>
+<arguments>
+</arguments>
+</buildCommand>
+</buildSpec>
+<natures>
+<nature>org.eclipse.jdt.core.javanature</nature>
+</natures>
+<linkedResources>
+<link>
+<name>bin</name>
+<type>2</type>
+<location>/home/kcasteel/workspace/BattleCode 2011/bin</location>
+</link>
+<link>
+<name>build.xml</name>
+<type>1</type>
+<location>/home/kcasteel/workspace/BattleCode 2011/build.xml</location>
+</link>
+<link>
+<name>examplefuncsplayer</name>
+<type>2</type>
+<location>/home/kcasteel/workspace/BattleCode 2011/bin/examplefuncsplayer</location>
+</link>
+<link>
+<name>lib</name>
+<type>2</type>
+<location>/home/kcasteel/workspace/BattleCode 2011/lib</location>
+</link>
+<link>
+<name>teams</name>
+<type>2</type>
+<location>/home/kcasteel/workspace/BattleCode 2011/teams</location>
+</link>
+</linkedResources>
+</projectDescription> 
