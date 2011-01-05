@@ -1,5 +1,6 @@
 package team028;
 
+import battlecode.common.GameActionException;
 import battlecode.common.RobotController;
 
 public abstract class Unit {
@@ -8,6 +9,6 @@ public abstract class Unit {
       {
     	  myRC=rc;
       }
-      public abstract void doStuff();
+      public abstract void doStuff() throws GameActionException;
       //put other generic code here
 }
