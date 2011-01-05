@@ -16,7 +16,7 @@
     <include name="*.jar"/>
   </fileset>
 
-  <fileset id="scala.files" dir="teams" includes="**/*.scala"/>
+  <fileset id="scala.files" dir="teams" includes="**/*.scala" excludes="scalaplayer/RobotPlayer.scala"/>
   <pathconvert property="scala" refid="scala.files" setonempty="false"/>
   
   <path id="classpath.run">

@@ -41,6 +41,10 @@ public class RobotPlayer implements Runnable{
 		      constructorScoutComponents.add(ComponentType.SIGHT);
 		      constructorScoutComponents.add(ComponentType.CONSTRUCTOR);
 		      
+		      //all the components on a StartFactory
+		      ArrayList<ComponentType> startFactoryComponents=new ArrayList<ComponentType>();
+		      startFactoryComponents.add(ComponentType.FACTORY);
+		      
               //check whether my components match any of our known robot types
 		      
 		      if(myComponentTypes.containsAll(constructorScoutComponents)){
@@ -49,7 +53,14 @@ public class RobotPlayer implements Runnable{
 		    	  BuilderController b=(BuilderController)c[myComponentTypes.indexOf(ComponentType.CONSTRUCTOR)];
 		    	  me=new ConstructorScout(myRC,m,s,b);
 		    	  typeDiscovered=true;
+		      }else if (myComponentTypes.containsAll(startFactoryComponents)){
+		    	  MovementController m=(MovementController)c[myComponentTypes.indexOf(ComponentType.BUILDING_MOTOR)];
+		    	  SensorController s=(SensorController)c[myComponentTypes.indexOf(ComponentType.BUILDING_SENSOR)];
+		    	  BuilderController b=(BuilderController)c[myComponentTypes.indexOf(ComponentType.FACTORY)];
+		    	  me=new StartFactory(myRC,m,s,b);
+		    	  typeDiscovered=true;
 		      }
+		      
              //otherwise, wait until the next turn
 		      myRC.yield();
 		}
