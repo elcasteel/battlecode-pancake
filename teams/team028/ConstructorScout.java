@@ -23,6 +23,8 @@ public class ConstructorScout extends Unit {
 	  MovementController myMotor;
 	  SensorController mySensor;
 	  BuilderController myBuilder;
+	  int timesNothingSeen = 0;
+	  
 	  public ConstructorScout(RobotController rc,MovementController m,SensorController s,BuilderController b){
 		  //myRC is part of Unit- call the parent myBuilder to initialize it
 		  super(rc);
@@ -97,39 +99,60 @@ public class ConstructorScout extends Unit {
     	if (closestMine!=null){
     		goal = closestMine;
     		dist = closestDist;
+    		timesNothingSeen = 0;
+    	}else{
+    		timesNothingSeen = timesNothingSeen+1;
     	}
-
-		if (closestMine==null){//no mines; keep looking
-			myMotor.setDirection(myRC.getDirection().rotateRight().rotateRight());
-			myRC.setIndicatorString(1, "Searching");
-		}else if (dist<=(myBuilder.type().range)){//within range to build
-			Direction goaldir = myRC.getLocation().directionTo(goal);
-			if (myRC.getDirection()!=goaldir){
-				myMotor.setDirection(goaldir);
-				myRC.yield();
-			}
-			if (myRC.getTeamResources()>(Chassis.BUILDING.cost+ComponentType.RECYCLER.cost)){
-				myBuilder.build(Chassis.BUILDING, goal);
-				myRC.yield();
-				myBuilder.build(ComponentType.RECYCLER, goal,RobotLevel.ON_GROUND);
-			}else{
-				myRC.setIndicatorString(1, "Insufficient $");
-			}
-		}else{//need to walk there.
-			myRC.setIndicatorString(1, "Need to travel to target");
-			Direction goaldir = myRC.getLocation().directionTo(goal);//TODO this rotation may prevent you from walking on the goal
-			if (myRC.getDirection()==goaldir){//Correct direction
-				while (!myMotor.canMove(myRC.getDirection())){
-    				myMotor.setDirection(myRC.getDirection().rotateRight());
-    				myRC.setIndicatorString(1, "Avoiding obstacle");
+    	
+    	if (timesNothingSeen<4){//Build towers on the closest mines
+    		myRC.setIndicatorString(0," "+timesNothingSeen);
+    		if (closestMine==null){//no mines; keep looking
+    			myMotor.setDirection(myRC.getDirection().rotateRight().rotateRight());
+    			myRC.setIndicatorString(1, "Searching");
+    		}else if (dist<=(myBuilder.type().range)){//within range to build
+    			Direction goaldir = myRC.getLocation().directionTo(goal);
+    			if (myRC.getDirection()!=goaldir){
+    				myMotor.setDirection(goaldir);
     				myRC.yield();
-				}
-				myMotor.moveForward();
-				myRC.setIndicatorString(1, "Traveling to target");
-			}else{
-				myMotor.setDirection(goaldir);
-			}
-		}
+    			}
+    			if (myRC.getTeamResources()>(Chassis.BUILDING.cost+ComponentType.RECYCLER.cost)){
+    				myBuilder.build(Chassis.BUILDING, goal);
+    				myRC.yield();
+    				myBuilder.build(ComponentType.RECYCLER, goal,RobotLevel.ON_GROUND);
+    			}else{
+    				myRC.setIndicatorString(1, "Insufficient $");
+    			}
+    		}else{//need to walk there.
+    			myRC.setIndicatorString(1, "Need to travel to target");
+    			Direction goaldir = myRC.getLocation().directionTo(goal);//TODO this rotation may prevent you from walking on the goal
+    			if (myRC.getDirection()==goaldir){//Correct direction
+    				while (!myMotor.canMove(myRC.getDirection())){
+    					myMotor.setDirection(myRC.getDirection().rotateRight());
+    					myRC.setIndicatorString(1, "Avoiding obstacle");
+    					myRC.yield();
+    				}
+    				myMotor.moveForward();
+    				myRC.setIndicatorString(1, "Traveling to target");
+    			}else{
+    				myMotor.setDirection(goaldir);
+    			}
+    		}
+    	}else{//No mines in view.  build one factory.
+    		//Invalid direction--keep turning
+    		while (!myMotor.canMove(myRC.getDirection())){
+				myMotor.setDirection(myRC.getDirection().rotateRight());
+				myRC.setIndicatorString(1, "Avoiding obstacle");
+				myRC.yield();
+    		}
+    		//Correct direction
+    		goal = myRC.getLocation().add(myRC.getDirection());
+    		if (myRC.getTeamResources()>(Chassis.BUILDING.cost+ComponentType.FACTORY.cost)){
+    			myBuilder.build(Chassis.BUILDING, goal);
+    			myRC.yield();
+    			myBuilder.build(ComponentType.FACTORY, goal,RobotLevel.ON_GROUND);
+    		}
+    	}
+    	
     	
 		myRC.yield();
     	
