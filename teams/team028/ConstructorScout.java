@@ -24,13 +24,19 @@ public class ConstructorScout extends Unit {
 	SensorController mySensor;
 	BuilderController myBuilder;
 	int timesNothingSeen = 0;
-
+    
+	//pathing states
+	boolean bugging=false;
+	MapLocation lastGoal=null;
+	boolean bugRight=true;
+	
 	public ConstructorScout(RobotController rc,MovementController m,SensorController s,BuilderController b){
 		//myRC is part of Unit- call the parent myBuilder to initialize it
 		super(rc);
 		myMotor=m;
 		mySensor=s;
 		myBuilder =b;
+		lastGoal=myRC.getLocation();
 	}
 	public void explore(){
 		//check for a mine within range
@@ -41,32 +47,7 @@ public class ConstructorScout extends Unit {
 		}
 
 	}
-
-	public void bugExperiment(MapLocation goal)throws GameActionException
-	{	
-		while(myRC.getLocation().distanceSquaredTo(goal)>(myBuilder.type().range))
-		{
-			Direction goaldir = myRC.getLocation().directionTo(goal);//TODO this rotation may prevent you from walking on the goal
-
-
-			while(!myMotor.canMove(goaldir))
-			{
-				goaldir=goaldir.rotateRight();
-				myRC.setIndicatorString(1, "Avoiding obstacle "+goaldir.toString());
-			}
-			while(myMotor.isActive())
-				myRC.yield();
-			myMotor.setDirection(goaldir);
-			myRC.yield();
-			while(myMotor.canMove(goaldir)&&!myMotor.canMove(goaldir.rotateLeft())&&myRC.getLocation().distanceSquaredTo(goal)>(myBuilder.type().range))
-			{
-				while(myMotor.isActive())
-					myRC.yield();
-				myMotor.moveForward();
-				myRC.yield();
-			}
-		}
-	}
+	
 	public void doStuff() throws GameActionException {
 
 		while (myMotor.isActive()) {
@@ -183,6 +164,57 @@ public class ConstructorScout extends Unit {
 
 
 
+	}
+	public MapLocation nextSquare(MapLocation goal)throws GameActionException
+	{	
+		//check whether the goal location has changed
+		if(goal.distanceSquaredTo(lastGoal)>9){
+			bugging=false;
+		}
+		lastGoal=goal;
+		MapLocation me=myRC.getLocation();
+		if(bugging)
+		{
+			MapLocation next=bugNextSquare(goal);
+			if(next!=null)
+				return next;
+		}
+		//if bugging returned null, try driving toward the goal again.
+		Direction goalDir=me.directionTo(goal);
+		if(myMotor.canMove(goalDir))
+			return me.add(goalDir);
+		//TODO: choose a bug direction, for now just assume it's right
+		bugging=true;
+		while(!myMotor.canMove(goalDir))
+			goalDir=goalDir.rotateLeft();
+		return me.add(goalDir);
+
+		
+	}
+	public MapLocation bugNextSquare(MapLocation goal)
+	{
+		boolean adjacentFree[]=new boolean[8];
+		Direction d=myRC.getDirection();
+		MapLocation l=myRC.getLocation();
+		if(bugRight)
+		{
+			//check whether you can move forward, if not, turn until you can 
+			if(!myMotor.canMove(d))
+			{
+				while(!myMotor.canMove(d))
+				{
+				    d=d.rotateLeft();
+				}
+				return l.add(d);
+			}
+			else if(myMotor.canMove(d.rotateRight()))
+			{
+				return l.add(d.rotateRight());
+			}
+			else 
+				return l.add(d);
+		}
+		return null;
 	}
 
 
